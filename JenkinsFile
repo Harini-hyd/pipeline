@@ -1,27 +1,33 @@
-pipeline{
+pipeline {
     agent any
-    tools{
+
+    tools {
         maven 'maven'
     }
-    stages{
-        stage('Checkout'){
-            steps{
-                git branch:'master',url:'https://github.com/Harini-hyd/mymaven.git'
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'master', url: 'https://github.com/Harini-hyd/mymaven-git'
             }
         }
-        stage('Build'){
-            steps{
+
+        stage('Build') {
+            steps {
                 bat 'mvn clean package'
             }
         }
-        stage('Test'){
-            steps{
+
+        stage('Test') {
+            steps {
                 bat 'mvn test'
             }
         }
-        stage('Run Application'){
-            steps{
-                bat 'java -jar target/mymaven-0.0.1-SNAPSHOT.jar'
+
+        stage('Run Application') {
+            steps {
+                // Replace this path with your actual JDK installation path if different
+                bat '"C:\\Program Files\\Java\\jdk-17\\bin\\java" -jar target/mymaven-0.0.1-SNAPSHOT.jar'
             }
         }
     }
