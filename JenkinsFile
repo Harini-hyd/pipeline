@@ -2,32 +2,31 @@ pipeline {
     agent any
 
     tools {
-        maven 'maven'
+        maven 'maven'  // must match Global Tool Configuration
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/Harini-hyd/mymaven-git'
+                git branch: 'master', url: 'https://github.com/Harini-hyd/pipeline.git'
             }
         }
 
         stage('Build') {
             steps {
-                bat 'mvn clean package'
+                sh 'mvn clean package'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'mvn test'
+                sh 'mvn test'
             }
         }
 
         stage('Run Application') {
             steps {
-                // Replace this path with your actual JDK installation path if different
-                bat '"C:\\Program Files\\Java\\jdk-17\\bin\\java" -jar target/mymaven-0.0.1-SNAPSHOT.jar'
+                sh 'java -jar target/mymaven-0.0.1-SNAPSHOT.jar'
             }
         }
     }
