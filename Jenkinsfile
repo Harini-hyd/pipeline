@@ -1,7 +1,6 @@
 pipeline { 
     agent any 
-    tools { 
-          jdk 'JAVA_Home'
+    tools {
           maven 'maven' //Ensure name matches with configured  
     } 
     stages {
